@@ -1,0 +1,41 @@
+using System;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Digite uma palavra ou frase para verificar se é um palíndromo:");
+        string input = Console.ReadLine();
+
+        if (IsPalindrome(input))
+        {
+            Console.WriteLine("É um palíndromo!");
+        }
+        else
+        {
+            Console.WriteLine("Não é um palíndromo!");
+        }
+    }
+
+    static bool IsPalindrome(string str)
+    {
+        
+        string cleanedStr = Regex.Replace(str, @"[^a-zA-Z]", "").ToLower();
+
+        int left = 0;
+        int right = cleanedStr.Length - 1;
+
+        while (left < right)
+        {
+            if (cleanedStr[left] != cleanedStr[right])
+            {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}
